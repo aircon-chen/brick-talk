@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "title": "黃色小鴨",
+  "summary": "圓滾滾的黃色小鴨，橘色的嘴巴和黑色眼睛。",
+  "size": {
+    "x": 16,
+    "y": 16,
+    "z": 12
+  },
+  "shapes": [
+    {
+      "shape": "ellipsoid",
+      "op": "add",
+      "color": "Yellow",
+      "label": "身體",
+      "mirror": "none",
+      "center": {
+        "x": 8,
+        "y": 9,
+        "z": 2.5
+      },
+      "radius": {
+        "x": 6,
+        "y": 6.5,
+        "z": 6
+      }
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Yellow",
+      "label": "身體",
+      "mirror": "none",
+      "min": {
+        "x": 5,
+        "y": 6,
+        "z": 0
+      },
+      "max": {
+        "x": 11,
+        "y": 12,
+        "z": 1
+      }
+    },
+    {
+      "shape": "ellipsoid",
+      "op": "add",
+      "color": "Yellow",
+      "label": "頭",
+      "mirror": "none",
+      "center": {
+        "x": 8,
+        "y": 5,
+        "z": 8
+      },
+      "radius": {
+        "x": 3.5,
+        "y": 3.5,
+        "z": 4
+      }
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Orange",
+      "label": "嘴巴",
+      "mirror": "none",
+      "min": {
+        "x": 6,
+        "y": 0,
+        "z": 7
+      },
+      "max": {
+        "x": 10,
+        "y": 4,
+        "z": 9
+      }
+    },
+    {
+      "shape": "cells",
+      "op": "paint",
+      "color": "Black",
+      "label": "眼睛",
+      "mirror": "x",
+      "cells": [
+        {
+          "x": 6,
+          "y": 2,
+          "z": 9
+        },
+        {
+          "x": 6,
+          "y": 2,
+          "z": 10
+        }
+      ]
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Yellow",
+      "label": "尾巴",
+      "mirror": "none",
+      "min": {
+        "x": 6,
+        "y": 14,
+        "z": 4
+      },
+      "max": {
+        "x": 10,
+        "y": 16,
+        "z": 7
+      }
+    }
+  ]
+}

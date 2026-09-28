@@ -1,0 +1,18 @@
+# 用法：docker compose up -d --build，然後打開 http://localhost:3000（3000 被佔用的話，在 .env 設 BRICK_TALK_PORT）
+services:
+  brick-talk:
+    build: .
+    image: brick-talk:local
+    ports:
+      # 只綁在這台電腦上，同一個網路的其他人連不到。
+      # 用 Claude 訂閱時只能自己用，不能開放給別人（Anthropic 的條款）。
+      - "127.0.0.1:${BRICK_TALK_PORT:-3000}:3000"
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - brick-talk-data:/data
+    restart: unless-stopped
+
+volumes:
+  brick-talk-data:

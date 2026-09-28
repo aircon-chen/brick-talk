@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "title": "紅色小跑車",
+  "summary": "紅色車身、白色斜頂，底下有四個真的輪子，引擎蓋鋪平滑的 tile。",
+  "size": {
+    "x": 18,
+    "y": 8,
+    "z": 7
+  },
+  "shapes": [
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Red",
+      "label": "底盤",
+      "mirror": "none",
+      "min": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 17,
+        "y": 7,
+        "z": 3
+      }
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Red",
+      "label": "車身",
+      "mirror": "none",
+      "top": "tiles",
+      "min": {
+        "x": 1,
+        "y": 1,
+        "z": 3
+      },
+      "max": {
+        "x": 17,
+        "y": 7,
+        "z": 4
+      }
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "White",
+      "label": "車頂",
+      "mirror": "none",
+      "top": "slopes",
+      "min": {
+        "x": 5,
+        "y": 2,
+        "z": 4
+      },
+      "max": {
+        "x": 13,
+        "y": 6,
+        "z": 6
+      }
+    },
+    {
+      "shape": "box",
+      "op": "paint",
+      "color": "Medium Azure",
+      "label": "車窗",
+      "mirror": "y",
+      "min": {
+        "x": 6,
+        "y": 2,
+        "z": 4
+      },
+      "max": {
+        "x": 12,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "shape": "box",
+      "op": "paint",
+      "color": "Medium Azure",
+      "label": "擋風玻璃",
+      "mirror": "none",
+      "min": {
+        "x": 12,
+        "y": 3,
+        "z": 4
+      },
+      "max": {
+        "x": 13,
+        "y": 5,
+        "z": 5
+      }
+    },
+    {
+      "shape": "cells",
+      "op": "paint",
+      "color": "Yellow",
+      "label": "車燈",
+      "mirror": "y",
+      "cells": [
+        {
+          "x": 16,
+          "y": 1,
+          "z": 2
+        }
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "part": "wheels",
+      "color": "Light Bluish Gray",
+      "label": "前輪",
+      "at": {
+        "x": 13,
+        "y": 3,
+        "z": 0
+      },
+      "axis": "y",
+      "mirror": "none"
+    },
+    {
+      "part": "wheels",
+      "color": "Light Bluish Gray",
+      "label": "後輪",
+      "at": {
+        "x": 3,
+        "y": 3,
+        "z": 0
+      },
+      "axis": "y",
+      "mirror": "none"
+    }
+  ]
+}

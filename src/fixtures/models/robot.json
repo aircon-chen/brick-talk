@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "title": "小機器人",
+  "summary": "灰色的方塊機器人，白色的頭、天藍色胸口面板，頭上有紅色天線。",
+  "size": { "x": 14, "y": 10, "z": 14 },
+  "shapes": [
+    { "shape": "box", "op": "add", "color": "Dark Bluish Gray", "label": "腿", "mirror": "x", "min": { "x": 3, "y": 3, "z": 0 }, "max": { "x": 6, "y": 7, "z": 5 } },
+    { "shape": "box", "op": "add", "color": "Light Bluish Gray", "label": "身體", "mirror": "none", "min": { "x": 2, "y": 2, "z": 5 }, "max": { "x": 12, "y": 8, "z": 10 } },
+    { "shape": "box", "op": "paint", "color": "Medium Azure", "label": "胸口面板", "mirror": "none", "min": { "x": 5, "y": 2, "z": 6 }, "max": { "x": 9, "y": 3, "z": 9 } },
+    { "shape": "box", "op": "add", "color": "Dark Bluish Gray", "label": "肩膀", "mirror": "x", "min": { "x": 0, "y": 3, "z": 9 }, "max": { "x": 4, "y": 7, "z": 11 } },
+    { "shape": "box", "op": "add", "color": "Dark Bluish Gray", "label": "手臂", "mirror": "x", "min": { "x": 0, "y": 3, "z": 4 }, "max": { "x": 2, "y": 7, "z": 9 } },
+    { "shape": "box", "op": "add", "color": "White", "label": "頭", "mirror": "none", "min": { "x": 4, "y": 3, "z": 10 }, "max": { "x": 10, "y": 7, "z": 13 } },
+    { "shape": "cells", "op": "paint", "color": "Black", "label": "眼睛", "mirror": "x", "cells": [ { "x": 5, "y": 3, "z": 11 } ] },
+    { "shape": "cells", "op": "add", "color": "Red", "label": "天線", "mirror": "x", "cells": [ { "x": 6, "y": 5, "z": 13 } ] }
+  ]
+}

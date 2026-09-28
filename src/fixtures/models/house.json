@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "title": "紅屋頂小房子",
+  "summary": "白牆紅屋頂的小房子，有一扇木門、兩扇窗和一根煙囪。",
+  "size": {
+    "x": 14,
+    "y": 12,
+    "z": 12
+  },
+  "shapes": [
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "White",
+      "label": "牆",
+      "mirror": "none",
+      "min": {
+        "x": 1,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 13,
+        "y": 11,
+        "z": 6
+      }
+    },
+    {
+      "shape": "box",
+      "op": "paint",
+      "color": "Reddish Brown",
+      "label": "門",
+      "mirror": "none",
+      "min": {
+        "x": 6,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 8,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "shape": "box",
+      "op": "paint",
+      "color": "Medium Azure",
+      "label": "窗",
+      "mirror": "x",
+      "min": {
+        "x": 2,
+        "y": 1,
+        "z": 2
+      },
+      "max": {
+        "x": 4,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Red",
+      "label": "屋頂",
+      "mirror": "none",
+      "top": "slopes",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 6
+      },
+      "max": {
+        "x": 14,
+        "y": 11,
+        "z": 7
+      }
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Red",
+      "label": "屋頂",
+      "mirror": "none",
+      "top": "slopes",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 7
+      },
+      "max": {
+        "x": 14,
+        "y": 11,
+        "z": 8
+      }
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Red",
+      "label": "屋頂",
+      "mirror": "none",
+      "top": "slopes",
+      "min": {
+        "x": 0,
+        "y": 2,
+        "z": 8
+      },
+      "max": {
+        "x": 14,
+        "y": 10,
+        "z": 9
+      }
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Red",
+      "label": "屋頂",
+      "mirror": "none",
+      "top": "slopes",
+      "min": {
+        "x": 0,
+        "y": 3,
+        "z": 9
+      },
+      "max": {
+        "x": 14,
+        "y": 9,
+        "z": 10
+      }
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Red",
+      "label": "屋頂",
+      "mirror": "none",
+      "top": "slopes",
+      "min": {
+        "x": 0,
+        "y": 4,
+        "z": 10
+      },
+      "max": {
+        "x": 14,
+        "y": 8,
+        "z": 11
+      }
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Red",
+      "label": "屋脊",
+      "mirror": "none",
+      "min": {
+        "x": 0,
+        "y": 5,
+        "z": 11
+      },
+      "max": {
+        "x": 14,
+        "y": 7,
+        "z": 12
+      }
+    },
+    {
+      "shape": "box",
+      "op": "add",
+      "color": "Dark Bluish Gray",
+      "label": "煙囪",
+      "mirror": "none",
+      "min": {
+        "x": 10,
+        "y": 7,
+        "z": 8
+      },
+      "max": {
+        "x": 12,
+        "y": 9,
+        "z": 12
+      }
+    }
+  ],
+  "base": "Green"
+}

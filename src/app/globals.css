@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Heiti TC", system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* 說明書：A4 直式，每一頁一個 .page */
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+.booklet .page {
+  width: 190mm;
+  height: 277mm;
+  overflow: hidden;
+  background: white;
+  margin: 0 auto 8mm;
+  padding: 6mm;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.15);
+  break-after: page;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  .booklet .page {
+    margin: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+  .booklet .page:last-child {
+    break-after: auto;
+  }
+}

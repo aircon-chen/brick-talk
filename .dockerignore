@@ -1,0 +1,18 @@
+# 不進映像檔：依賴與產物（容器裡重新安裝、重新 build）
+node_modules
+.next
+test-results
+playwright-report
+artifacts
+.git
+**/__pycache__
+
+# key 與本機設定：只在執行時由 docker compose 帶進去，不會打包
+.env*
+
+# 本機才有的資料：BrickLink 色表與價格（條款不允許散布）、Rebrickable 原始資料與零件資料庫（容器第一次啟動時自己下載建立）
+data/raw/bricklink
+data/raw/rebrickable
+data/raw/ldraw/cache
+data/catalog/lego_catalog.sqlite
+src/core/price.data.json
