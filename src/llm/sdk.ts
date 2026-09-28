@@ -11,12 +11,13 @@ export function hasApiKey(): boolean {
   return !!process.env.ANTHROPIC_API_KEY;
 }
 
-export const sdkCallModel: CallModel = async ({ system, messages, signal, timeoutMs }) => {
+/** 指定模型的設計呼叫（比較頁用）；預設的 sdkCallModel 用 DESIGN_MODEL。 */
+export const sdkCallModelFor = (model: string): CallModel => async ({ system, messages, signal, timeoutMs }) => {
   // 重試只由 designModel 控制，SDK 自己不重試
   client ??= new Anthropic({ maxRetries: 0 });
   const stream = client.messages.stream(
     {
-      model: DESIGN_MODEL,
+      model,
       max_tokens: 32000, // thinking 也算在裡面
       system,
       messages,
@@ -26,6 +27,8 @@ export const sdkCallModel: CallModel = async ({ system, messages, signal, timeou
   );
   return await stream.finalMessage();
 };
+
+export const sdkCallModel = sdkCallModelFor(DESIGN_MODEL);
 
 /** 點子模式用 Sonnet 5、effort low，求快。 */
 export const sdkIdeasCallModel: CallModel = async ({ system, messages, signal, timeoutMs }) => {

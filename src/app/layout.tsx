@@ -18,6 +18,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               Brick Talk
             </Link>
             <Link href="/parts" className="shrink-0 text-sm font-medium text-red-700 hover:underline">零件總覽</Link>
+            <Link href="/compare" className="shrink-0 text-sm font-medium text-red-700 hover:underline">模型比較</Link>
             <span className="text-sm text-zinc-500">用真實零件組出你的點子</span>
           </div>
         </header>

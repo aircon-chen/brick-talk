@@ -46,6 +46,12 @@ A4 說明書有封面、零件總表、每一步的零件 callout 與組裝圖�
 
 每種零件列出尺寸、中文色名與 LEGO® 官方色名、Element ID、BrickLink 編號和估計小計。可以下載 CSV、Pick a Brick CSV、BrickLink Wanted List（XML）和 LDraw 檔。
 
+### 模型比較
+
+![同一句話交給 Claude Opus 5.5、Claude Sonnet 5、Codex 設計的小貓並排比較](docs/images/compare.png)
+
+`/compare` 可以把同一句話同時交給好幾個 AI 模型設計。每個模型的設計都用同一套程式轉成真實零件、檢查結構，所以結果可以直接比：花了幾秒、呼叫幾次、用了多少 token、換算的 API 成本、幾塊零件、組起來會不會散、要補幾格支撐、估計價格。上圖是「一隻坐著的橘色小貓」（中尺寸）的實測：Claude Opus 5.5 最快（39.9 秒），Claude Sonnet 5 用的零件最少（211 塊）但重試了一次，Codex 不用補任何支撐。同一個模型每次結果也會不同，這只是一次的結果。
+
 ### 零件總覽
 
 `/parts` 可以瀏覽 Rebrickable 目錄裡的全部零件（六萬多個），依分類篩選、用名稱或編號搜尋，看每個顏色的 Element ID。這一頁要先在本機產生零件資料庫，見下面的安裝說明。
@@ -98,6 +104,23 @@ AI 設計功能在 `.env` 裡設定，三選一：
 - 容器用一般使用者身分執行，有健康檢查（`docker ps` 看得到狀態），程式意外結束時會自動重啟。
 
 停止用 `docker compose down`；連零件資料一起刪掉用 `docker compose down -v`。映像檔約 1.5 GB。映像檔裡的 Claude Code 是 Anthropic 的專有授權軟體，請在自己的電腦 build 自己用，不要把 build 好的映像檔推到公開的 registry。
+
+## 模型比較的設定
+
+比較頁會列出這台電腦設定好的模型，在 `.env.local`（Docker 用 `.env`）設定：
+
+| 模型 | 設定 | 說明 |
+|---|---|---|
+| Claude Opus 5.5、Claude Sonnet 5 | `ANTHROPIC_API_KEY=你的 key` | Anthropic API，照用量計費 |
+| Claude Opus 5.5、Claude Sonnet 5（訂閱） | `LLM_BACKEND=claude-cli`，Docker 用 `CLAUDE_CODE_OAUTH_TOKEN` | 用你的 Claude 訂閱額度，只能自己用 |
+| OpenAI 模型 | `OPENAI_API_KEY=你的 key`，要比哪些模型用 `OPENAI_MODELS=模型1,模型2`（預設 `gpt-6-astra`） | OpenAI Responses API，照用量計費 |
+| Codex（ChatGPT 訂閱，實驗性） | `CODEX_CLI=1`，要指定模型用 `CODEX_MODEL` | 呼叫本機已登入的 Codex CLI，Docker 版沒有 |
+
+Codex 這條路要特別說明：它在本機執行官方的 `codex exec`，用你登入 Codex 的 ChatGPT 帳號。OpenAI 的文件建議程式化使用 Codex 改用 API key，也沒有明確說明用 ChatGPT 訂閱從其他程式呼叫是否可以，所以標成實驗性，只建議自己在本機比較模型時用。Codex 是 coding agent，每次呼叫會多帶約 3 萬個輸入 token 的系統提示，token 數字不能跟直接呼叫模型的直接比。Codex 會用 shell 工具，所以程式讓它在一個只放了輸出格式檔的暫存目錄執行，並用 Codex 的權限設定禁止讀寫其他地方（實測讀不到家目錄與暫存目錄裡的檔案）。
+
+用任何一種訂閱（Claude 或 ChatGPT）時，網站只給自己用：`pnpm dev -H 127.0.0.1` 或 Docker 版（只綁在這台電腦）。不加 `-H` 的 `pnpm dev` 同一個網路的人也連得到，會用掉你的額度。
+
+比較頁裡每個模型最多等 5 分鐘（一般設計是 2 到 3 分鐘），因為模型的速度差很多：實測 Claude Sonnet 5 比 Opus 5.5 慢一倍以上。
 
 ## 安裝與啟動
 

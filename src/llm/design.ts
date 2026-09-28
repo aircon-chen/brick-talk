@@ -98,7 +98,7 @@ function isBusy(e: unknown): boolean {
 
 export async function designModel(
   input: DesignInput,
-  deps: { callModel: CallModel; now?: () => number; deadlineMs?: number; firstCallMs?: number },
+  deps: { callModel: CallModel; now?: () => number; deadlineMs?: number; firstCallMs?: number; /** 使用者取消（例如離開頁面）時停止 */ signal?: AbortSignal },
 ): Promise<DesignOutcome> {
   const now = deps.now ?? Date.now;
   const start = now();
@@ -106,6 +106,7 @@ export async function designModel(
   const system = buildSystemPrompt(input.size);
   const messages: ChatMessage[] = [{ role: "user", content: buildUserMessage(input.prompt, input.size) }];
   const ctrl = new AbortController();
+  deps.signal?.addEventListener("abort", () => ctrl.abort());
   const timer = setTimeout(() => ctrl.abort(), Math.max(0, deadline - now()));
   let inputTokens = 0;
   let outputTokens = 0;

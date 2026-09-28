@@ -15,10 +15,10 @@ export function claudeCliEnabled(): boolean {
 /** 跑一次 claude，回傳 stdout。測試時可以換成假的。 */
 export type RunClaude = (args: string[], stdin: string, signal: AbortSignal) => Promise<string>;
 
-export const runClaude: RunClaude = (args, stdin, signal) =>
-  new Promise((resolve, reject) => {
-    // 在暫存目錄執行，不會讀到這個專案的 CLAUDE.md 或檔案
-    const child = spawn("claude", args, { cwd: tmpdir(), stdio: ["pipe", "pipe", "pipe"] });
+/** 在暫存目錄執行一個 CLI（不會讀到這個專案的 CLAUDE.md 或檔案），stdin 送入內容，回傳 stdout。codex-cli 也用這個。 */
+export function spawnCli(command: string, args: string[], stdin: string, signal: AbortSignal): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, args, { cwd: tmpdir(), stdio: ["pipe", "pipe", "pipe"] });
     let out = "", err = "";
     child.stdout.on("data", (d) => (out += d));
     child.stderr.on("data", (d) => (err += d));
@@ -31,11 +31,14 @@ export const runClaude: RunClaude = (args, stdin, signal) =>
     child.on("close", (code) => {
       signal.removeEventListener("abort", onAbort);
       if (signal.aborted) return reject(Object.assign(new Error("aborted"), { name: "AbortError" }));
-      if (code !== 0 && !out.trim()) return reject(new Error(`claude 結束碼 ${code}：${err.trim().slice(0, 300)}`));
+      if (code !== 0 && !out.trim()) return reject(new Error(`${command} 結束碼 ${code}：${err.trim().slice(0, 300)}`));
       resolve(out);
     });
     child.stdin.end(stdin);
   });
+}
+
+export const runClaude: RunClaude = (args, stdin, signal) => spawnCli("claude", args, stdin, signal);
 
 /** 把多輪對話攤平成一段文字（claude -p 一次只吃一則使用者訊息）。 */
 export function flattenMessages(messages: ChatMessage[]): string {

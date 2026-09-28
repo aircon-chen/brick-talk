@@ -127,3 +127,6 @@ data/catalog/：64,664 個零件、275 種顏色、114,315 筆 Element ID 的 SQ
 - 2026-09-28 12:29 已公開：https://github.com/aircon-chen/brick-talk（29 個 commit，歷史裡已移除 BrickLink 色表與價格檔）。這個本機 repo 的歷史沒有過濾、commit hash 跟 GitHub 不同，不要從這裡 push；之後改在 GitHub 的 clone 上工作。
 - 2026-09-28 13:29 公開前的合規與體驗整理：BrickLink 零件編號與色號改由 Rebrickable API 產生（原本 61 個色號與 63 個零件編號完全相同，另外補上 7 個舊方法對不上名稱的顏色）；README 改成圖文功能介紹（docs/images，截圖用內建估價與原創範例）、加 AI 啟動提示詞（Claude Code agent 在乾淨資料夾實測通過）；新增 Docker 版（預設裝 Claude Code 2.1.283，API key 或 CLAUDE_CODE_OAUTH_TOKEN 自動判斷，只綁 127.0.0.1，第一次啟動自動建零件資料庫；三種模式都實測過）。
 - 下一步與卡點：公開 repo 改成單一乾淨 commit 並 force push（等使用者最後確認）；之後在 GitHub clone 上做 LLM 比較頁與 OpenAI 支援。
+- 2026-09-28 14:16 新增 LLM 比較頁 /compare：同一句話同時交給多個模型（Claude API、Claude 訂閱 claude-cli、OpenAI Responses API、Codex CLI 的 ChatGPT 登入標實驗性），結果並排 3D 與指標表。實測「坐著的橘色小貓」M：Opus 5.5 39.9 秒、Sonnet 5 149.6 秒（重試 1 次）、Codex 108.3 秒；比較頁每個模型上限 240 秒／總 300 秒。Codex 用 --ignore-user-config --ignore-rules，仍帶約 3 萬輸入 token。OpenAI API 沒有 key，只有單元測試（假 fetch），實際呼叫 [未驗證]。
+- 下一步與卡點：等 Codex 對抗性審查、修正後 commit 並經使用者確認 push。
+- 2026-09-28 14:24 Codex 對抗性審查（codex exec 唯讀）5 條都成立並修掉：(1) Codex 的 -s read-only 擋不住讀取，實測讀得到任意檔案，改用權限設定 workspace-only（-c 帶入；-s 會蓋掉它），實測讀不到家目錄與暫存目錄；(2) Codex 要看到 turn.completed 才接受結果；(3) 離開比較頁取消請求，route 把 req.signal 接進 designModel；(4) OpenAI status failed 直接回報；(5) 比較表警告含正規化警告。驗證：lint、tsc、test 195 passed、e2e 30 passed、docker build。
