@@ -66,7 +66,7 @@ export default function DesignForm({ initialPrompt = "", initialSize = "M", init
     <form className="mt-6 rounded-xl border border-zinc-200 bg-white p-4 shadow-sm" data-testid="design-form"
       onSubmit={(e) => { e.preventDefault(); void submit(); }}>
       <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} maxLength={300} rows={3} disabled={busy}
-        placeholder="你想用樂高做什麼？例如：一隻紅色的小恐龍" aria-label="你想做什麼"
+        placeholder="你想用樂高® 積木做什麼？例如：一隻紅色的小恐龍" aria-label="你想做什麼"
         className="w-full resize-none rounded-lg border border-zinc-300 p-3 text-lg outline-none focus:border-red-500" />
       <div className="mt-3 flex flex-wrap items-center gap-4">
         <fieldset className="flex flex-wrap gap-2" disabled={busy}>

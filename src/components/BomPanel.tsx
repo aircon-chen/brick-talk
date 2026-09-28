@@ -29,7 +29,7 @@ export default function BomPanel({ result }: { result: BuildResult }) {
       <p className="text-zinc-700">共 <b>{rows.length}</b> 種零件、<b>{total}</b> 塊，估計約 <b>NT$ {result.stats.priceTwd.toLocaleString()}</b>。</p>
       <p className="mt-1 text-xs text-zinc-500" data-testid="price-note">
         價格是估算：{PRICE_INFO.source}（{PRICE_INFO.date}，{PRICE_INFO.samples} 種零件），表裡沒有的零件照同種零件的大小推算，
-        美元以 1 : {PRICE_INFO.usdToTwd} 換算。少見的顏色通常比較貴，也不含運費；在台灣的樂高店或網路賣家買，實際價格以店家為準。
+        美元以 1 : {PRICE_INFO.usdToTwd} 換算。少見的顏色通常比較貴，也不含運費；在台灣的樂高® 專賣店或網路賣家買，實際價格以店家為準。
       </p>
 
       <div className="mt-3 flex flex-wrap gap-2">
@@ -117,7 +117,7 @@ export default function BomPanel({ result }: { result: BuildResult }) {
       <section className="mt-8 rounded-xl border border-zinc-200 bg-white p-5 text-sm leading-relaxed text-zinc-700" data-testid="how-to-buy">
         <h3 className="text-base font-semibold text-zinc-900">怎麼買</h3>
         <ul className="mt-2 list-disc space-y-2 pl-5">
-          <li><b>樂高授權店的 Pick a Brick 牆</b>：到「組裝說明書」分頁按「只印零件清單」帶去，照尺寸和顏色挑。牆上的零件種類有限。</li>
+          <li><b>樂高® 授權店的 Pick a Brick 牆</b>：到「組裝說明書」分頁按「只印零件清單」帶去，照尺寸和顏色挑。牆上的零件種類有限。</li>
           <li><b>LEGO.com Pick a Brick</b>：用 Element ID 搜尋，搜不到代表編號換過，可以去 BrickLink 查新編號。美國、加拿大的 Pick a Brick 有批次上傳功能，這裡匯出的 CSV 照公開資料的格式製作，還沒實測。台灣能不能線上下單還沒確認。</li>
           <li><b>BrickLink</b>：到 Wanted List 上傳頁（<span className="break-all">https://www.bricklink.com/v2/wanted/upload.page</span>）上傳匯出的 XML，再向賣家下單。</li>
         </ul>

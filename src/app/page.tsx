@@ -17,7 +17,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-10">
       <section>
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">你想用樂高做什麼？</h1>
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">你想用樂高® 積木做什麼？</h1>
         <p className="mt-3 max-w-2xl text-zinc-600">
           說出你的點子，我們用真實存在、近期有生產的 LEGO® 零件把它設計出來，列出要買哪些零件，再給你一本可以列印的組裝說明書。
         </p>
